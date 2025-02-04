@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import matplotlib.pyplot as plt
-import random
 import os
 from datetime import datetime
 
@@ -60,6 +59,15 @@ def save_story(prompt, genre, story):
     else:
         new_data.to_csv(filename, mode='w', header=True, index=False)
 
+# Function to Clear Story History
+def clear_story_history():
+    filename = "generated_stories.csv"
+    if os.path.exists(filename):
+        os.remove(filename)
+        st.success("All story history has been cleared!")
+    else:
+        st.warning("No history found to clear.")
+
 # Load Saved Stories
 def load_stories():
     filename = "generated_stories.csv"
@@ -76,12 +84,15 @@ st.subheader("✍️ Generate a Story")
 prompt = st.text_input("Enter a story prompt:")
 genre = st.selectbox("Choose a genre:", df["Genre"].tolist())
 
-generated_story = ""
 if st.button("Generate Story"):
     generated_story = generate_story(prompt, genre)
     save_story(prompt, genre, generated_story)
     st.success("Story Generated Successfully!")
     st.write(generated_story)
+
+# Clear History Button
+if st.button("Clear Story History"):
+    clear_story_history()
 
 # Chart: Story Generation Stats
 st.subheader("📊 Story Distribution by Genre")
@@ -90,9 +101,10 @@ st.plotly_chart(fig)
 
 # Matplotlib Pie Chart
 st.subheader("🎭 Genre Distribution")
-fig_pie, ax_pie = plt.subplots()
-ax_pie.pie(df["Stories Generated"], labels=df["Genre"], autopct='%1.1f%%', startangle=140)
+fig_pie, ax_pie = plt.subplots(figsize=(8, 8))
+ax_pie.pie(df["Stories Generated"], labels=df["Genre"], autopct='%1.1f%%', startangle=140, pctdistance=0.85)
 ax_pie.axis("equal")  # Equal aspect ratio ensures the pie chart is circular.
+plt.tight_layout()
 st.pyplot(fig_pie)
 
 # Load and Display Recent Stories
