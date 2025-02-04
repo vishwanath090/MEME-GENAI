@@ -1,7 +1,10 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import matplotlib.pyplot as plt
 import random
+import os
+from datetime import datetime
 
 # Sample Data: Genres and Story Count
 genre_data = {
@@ -47,6 +50,23 @@ def generate_story(prompt, genre):
     }
     return story_templates.get(genre, "Sorry, genre not found!")
 
+# Function to Save Story
+def save_story(prompt, genre, story):
+    filename = "generated_stories.csv"
+    new_data = pd.DataFrame([[datetime.now(), prompt, genre, story]],
+                             columns=["Timestamp", "Prompt", "Genre", "Story"])
+    if os.path.exists(filename):
+        new_data.to_csv(filename, mode='a', header=False, index=False)
+    else:
+        new_data.to_csv(filename, mode='w', header=True, index=False)
+
+# Load Saved Stories
+def load_stories():
+    filename = "generated_stories.csv"
+    if os.path.exists(filename):
+        return pd.read_csv(filename)
+    return pd.DataFrame(columns=["Timestamp", "Prompt", "Genre", "Story"])
+
 # Streamlit UI
 st.title("📖 AI Story Generator Dashboard")
 st.write("Generate stories based on AI and analyze user trends!")
@@ -59,6 +79,7 @@ genre = st.selectbox("Choose a genre:", df["Genre"].tolist())
 generated_story = ""
 if st.button("Generate Story"):
     generated_story = generate_story(prompt, genre)
+    save_story(prompt, genre, generated_story)
     st.success("Story Generated Successfully!")
     st.write(generated_story)
 
@@ -67,6 +88,25 @@ st.subheader("📊 Story Distribution by Genre")
 fig = px.bar(df, x="Genre", y="Stories Generated", color="Genre", title="Story Generation Statistics")
 st.plotly_chart(fig)
 
-# Display User-Generated Stories (Can be expanded with a database)
+# Matplotlib Pie Chart
+st.subheader("🎭 Genre Distribution")
+fig_pie, ax_pie = plt.subplots()
+ax_pie.pie(df["Stories Generated"], labels=df["Genre"], autopct='%1.1f%%', startangle=140)
+ax_pie.axis("equal")  # Equal aspect ratio ensures the pie chart is circular.
+st.pyplot(fig_pie)
+
+# Load and Display Recent Stories
 st.subheader("📝 Recent User Stories")
-st.write("(Feature can be extended by storing user stories in a database)")
+story_df = load_stories()
+st.dataframe(story_df.tail(5))
+
+# Download Stories Button
+st.subheader("⬇️ Download Your Stories")
+if not story_df.empty:
+    csv = story_df.to_csv(index=False).encode('utf-8')
+    st.download_button(
+        label="Download Stories as CSV",
+        data=csv,
+        file_name="generated_stories.csv",
+        mime="text/csv"
+    )
