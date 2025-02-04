@@ -55,7 +55,7 @@ st.title("📖 AI Story Generator Dashboard")
 st.write("Generate stories based on AI and analyze user trends!")
 
 # Story Input Section
-st.subheader("✍️ Generate a Story")
+st.subheader("✍ Generate a Story")
 prompt = st.text_input("Enter a story prompt:")
 genre = st.selectbox("Choose a genre:", df["Genre"].tolist())
 
@@ -108,7 +108,7 @@ story_df = load_stories()
 st.dataframe(story_df.tail(5))
 
 # Download Stories Button
-st.subheader("⬇️ Download Your Stories")
+st.subheader("⬇ Download Your Stories")
 if not story_df.empty:
     csv = story_df.to_csv(index=False).encode('utf-8')
     st.download_button(
@@ -116,4 +116,4 @@ if not story_df.empty:
         data=csv,
         file_name="generated_stories.csv",
         mime="text/csv"
-    )
+    )
