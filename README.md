@@ -21,9 +21,13 @@ The dataset consists of writing prompts and human-generated stories, stored in t
 - `test.wp_source`
   
 •	Abbreviation	•	Meaning	             •	Example Files
+
 •	wp	          •	Writing Prompts	     •	train.wp.source, train.wp.target
+
 •	rr	          •	Reddit Responses	   •	train.rr.source, train.rr.target
+
 •	vp	          •	Validation Prompts	 •	valid.vp.source, valid.vp.target
+
 •	tt	          •	Title-Text           •	train.tt.source, train.tt.target
 
 
