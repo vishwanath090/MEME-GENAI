@@ -1,9 +1,0 @@
-python==3.10.10
-tensorflow==2.15.0
-keras==2.15.0
-numpy==1.23.5
-pandas==2.0.3
-matplotlib==3.7.1
-scikit-learn==1.2.2
-streamlit==1.30.0
-flask==2.2.5
