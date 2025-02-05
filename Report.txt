@@ -1,19 +1,20 @@
 •	Project Report: Story Generation Using Seq2Seq Model with Attention
 1. Introduction
-The goal of this project is to build a story generation system using a sequence-sequence (Seq2Seq) model with an attention mechanism.
-The system takes a writing prompt as input and generates a coherent story as output. 
-The project leverages deep learning techniques, specifically Long Short-Term Memory (LSTM) networks, and is implemented using TensorFlow and Keras. 
-A Flask API is also developed to expose the model's functionality for real-time story generation.
-2. Problem Statement
-Generating creative and coherent stories from a given prompt is a challenging task in natural language processing (NLP). 
-Traditional rule-based systems lack the flexibility and creativity required for such tasks.
-This project aims to address this challenge by using a deep learning-based approach to generate stories that are contextually relevant and grammatically correct.
+  The goal of this project is to build a story generation system using a sequence-sequence (Seq2Seq) model with an attention mechanism.
+  The system takes a writing prompt as input and generates a coherent story as output. 
+  The project leverages deep learning techniques, specifically Long Short-Term Memory (LSTM) networks, and is implemented using TensorFlow and Keras. 
+  A Flask API is also developed to expose the model's functionality for real-time story generation.
+2 . Problem Statement
+   Generating creative and coherent stories from a given prompt is a challenging task in natural language processing (NLP). 
+   Traditional rule-based systems lack the flexibility and creativity required for such tasks.
+   This project aims to address this challenge by using a deep learning-based approach to generate stories that are contextually relevant and 
+   grammatically correct.
 3. Dataset
-The dataset used in this project consists of pairs of writing prompts and corresponding stories. The data is split into three sets:
-•	Training Data: Used to train the Seq2Seq model.
-•	Validation Data: Used to tune the model and prevent overfitting.
-•	Test Data: Used to evaluate the model's performance.
-The dataset is stored in text files, with each line containing a prompt or a story.
+   The dataset used in this project consists of pairs of writing prompts and corresponding stories. The data is split into three sets:
+  •	Training Data: Used to train the Seq2Seq model.
+  •	Validation Data: Used to tune the model and prevent overfitting.
+  •	Test Data: Used to evaluate the model's performance.
+   The dataset is stored in text files, with each line containing a prompt or a story.
 4. Methodology
 4.1 Preprocessing
 1.	Data Loading:
