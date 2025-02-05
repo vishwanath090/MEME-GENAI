@@ -1,7 +1,8 @@
 # AI-Based Story Generation Using Writing Prompts
 
 ## Project Overview
-This project utilizes AI to generate creative stories based on user-provided writing prompts. The model is trained on a dataset of writing prompts and corresponding human-written stories, enabling it to produce coherent and engaging narratives. The final model is deployed using Flask for an interactive user experience.
+AI-based story generation refers to the use of artificial intelligence models, like GPT (Generative Pre-trained Transformers) or similar systems, to create narratives automatically. These AI models are trained on vast datasets of human-written text, enabling them to generate coherent and contextually relevant stories across a variety of genres
+This project utilizes AI to generate creative stories based on user-provided writing prompts. The model is trained on a dataset of writing prompts. The final model is deployed using Flask for an interactive user experience.
 
 ## Features
 - Generates creative and contextually relevant stories from prompts.
@@ -10,6 +11,7 @@ This project utilizes AI to generate creative stories based on user-provided wri
 - Model saving and loading for efficient reuse.
 
 ## Dataset
+dataset link: https://www.kaggle.com/datasets/ratthachat/writing-prompts
 The dataset consists of writing prompts and human-generated stories, stored in the following files:
 - `valid.wp_target`
 - `valid.wp_source`
