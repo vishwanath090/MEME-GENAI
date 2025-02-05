@@ -1,176 +1,108 @@
-Project Report: Story Generation Using Seq2Seq Model with Attention
+•	Project Report: Story Generation Using Seq2Seq Model with Attention
+________________________________________
 1. Introduction
 The goal of this project is to build a story generation system using a sequence-to-sequence (Seq2Seq) model with an attention mechanism. The system takes a writing prompt as input and generates a coherent story as output. The project leverages deep learning techniques, specifically Long Short-Term Memory (LSTM) networks, and is implemented using TensorFlow and Keras. A Flask API is also developed to expose the model's functionality for real-time story generation.
-
+________________________________________
 2. Problem Statement
 Generating creative and coherent stories from a given prompt is a challenging task in natural language processing (NLP). Traditional rule-based systems lack the flexibility and creativity required for such tasks. This project aims to address this challenge by using a deep learning-based approach to generate stories that are contextually relevant and grammatically correct.
-
+________________________________________
 3. Dataset
 The dataset used in this project consists of pairs of writing prompts and corresponding stories. The data is split into three sets:
-
-Training Data: Used to train the Seq2Seq model.
-
-Validation Data: Used to tune the model and prevent overfitting.
-
-Test Data: Used to evaluate the model's performance.
-
+•	Training Data: Used to train the Seq2Seq model.
+•	Validation Data: Used to tune the model and prevent overfitting.
+•	Test Data: Used to evaluate the model's performance.
 The dataset is stored in text files, with each line containing a prompt or a story.
-
+________________________________________
 4. Methodology
 4.1 Preprocessing
-Data Loading:
-
-The load_data function reads the source (prompts) and target (stories) text files.
-
-Data is split into training, validation, and test sets.
-
-Tokenization:
-
-A Tokenizer from TensorFlow's Keras API is used to convert text into sequences of integers.
-
-The tokenizer is fitted on both the source and target texts to build a vocabulary.
-
-Special tokens like <OOV> (out-of-vocabulary) are added to handle unknown words.
-
-Padding Sequences:
-
-The sequences are padded to a fixed length (max_seq_length) using pad_sequences.
-
-This ensures that all input sequences have the same length, which is required for training the model.
-
-Input and Output Preparation:
-
-For the decoder, the target sequences are shifted by one position to create the input and output pairs.
-
-Input to the decoder: target_padded[:, :-1]
-
-Output from the decoder: target_padded[:, 1:]
-
+1.	Data Loading:
+o	The load_data function reads the source (prompts) and target (stories) text files.
+o	Data is split into training, validation, and test sets.
+2.	Tokenization:
+o	A Tokenizer from TensorFlow's Keras API is used to convert text into sequences of integers.
+o	The tokenizer is fitted on both the source and target texts to build a vocabulary.
+o	Special tokens like <OOV> (out-of-vocabulary) are added to handle unknown words.
+3.	Padding Sequences:
+o	The sequences are padded to a fixed length (max_seq_length) using pad_sequences.
+o	This ensures that all input sequences have the same length, which is required for training the model.
+4.	Input and Output Preparation:
+o	For the decoder, the target sequences are shifted by one position to create the input and output pairs.
+	Input to the decoder: target_padded[:, :-1]
+	Output from the decoder: target_padded[:, 1:]
+________________________________________
 4.2 Model Architecture
 The Seq2Seq model with attention is implemented as follows:
-
-Encoder:
-
-Takes the padded source sequences as input.
-
-An embedding layer converts the integer sequences into dense vectors of fixed size (embedding_dim).
-
-An LSTM layer processes the embedded sequences and returns the final hidden states (state_h, state_c), which capture the context of the input sequence.
-
-Decoder:
-
-Takes the padded target sequences as input.
-
-An embedding layer converts the sequences into dense vectors.
-
-An LSTM layer processes the embedded sequences, using the encoder's final hidden states as the initial state.
-
-Attention Mechanism:
-
-An attention layer is used to focus on relevant parts of the encoder's output while generating each word in the target sequence.
-
-The attention output is concatenated with the decoder's LSTM output to provide additional context.
-
-Dense Layer:
-
-A dense layer with a softmax activation function predicts the probability distribution over the vocabulary for each word in the sequence.
-
-Model Training:
-
-The model is compiled with the Adam optimizer and sparse categorical cross-entropy loss.
-
-It is trained on the padded source and target sequences for a specified number of epochs.
-
+1.	Encoder:
+o	Takes the padded source sequences as input.
+o	An embedding layer converts the integer sequences into dense vectors of fixed size (embedding_dim).
+o	An LSTM layer processes the embedded sequences and returns the final hidden states (state_h, state_c), which capture the context of the input sequence.
+2.	Decoder:
+o	Takes the padded target sequences as input.
+o	An embedding layer converts the sequences into dense vectors.
+o	An LSTM layer processes the embedded sequences, using the encoder's final hidden states as the initial state.
+3.	Attention Mechanism:
+o	An attention layer is used to focus on relevant parts of the encoder's output while generating each word in the target sequence.
+o	The attention output is concatenated with the decoder's LSTM output to provide additional context.
+4.	Dense Layer:
+o	A dense layer with a softmax activation function predicts the probability distribution over the vocabulary for each word in the sequence.
+5.	Model Training:
+o	The model is compiled with the Adam optimizer and sparse categorical cross-entropy loss.
+o	It is trained on the padded source and target sequences for a specified number of epochs.
+________________________________________
 4.3 Postprocessing
-Story Generation:
-
-The generate_story function takes a prompt as input.
-
-The prompt is tokenized and padded to match the input length expected by the model.
-
-The decoder input is initialized with a start token (<start>).
-
-The model predicts the next word in the sequence iteratively until the end token (<end>) is generated or the maximum sequence length is reached.
-
-Text Conversion:
-
-The generated sequence of integers is converted back into text using the tokenizer's sequences_to_texts method.
-
-Flask API:
-
-A Flask API is created to expose the story generation functionality.
-
-The API accepts a JSON payload with a prompt and returns the generated story as a JSON response.
-
+1.	Story Generation:
+o	The generate_story function takes a prompt as input.
+o	The prompt is tokenized and padded to match the input length expected by the model.
+o	The decoder input is initialized with a start token (<start>).
+o	The model predicts the next word in the sequence iteratively until the end token (<end>) is generated or the maximum sequence length is reached.
+2.	Text Conversion:
+o	The generated sequence of integers is converted back into text using the tokenizer's sequences_to_texts method.
+3.	Flask API:
+o	A Flask API is created to expose the story generation functionality.
+o	The API accepts a JSON payload with a prompt and returns the generated story as a JSON response.
+________________________________________
 5. Implementation
 5.1 Tools and Libraries
-TensorFlow/Keras: For building and training the Seq2Seq model.
-
-NumPy: For numerical operations.
-
-Pandas: For data manipulation.
-
-Flask: For creating the API to serve the model.
-
+•	TensorFlow/Keras: For building and training the Seq2Seq model.
+•	NumPy: For numerical operations.
+•	Pandas: For data manipulation.
+•	Flask: For creating the API to serve the model.
 5.2 Code Structure
-Data Loading and Preprocessing:
-
-load_data: Loads the dataset.
-
-preprocess_data: Tokenizes and pads the sequences.
-
-Model Building:
-
-build_model: Defines the Seq2Seq model with attention.
-
-Training:
-
-The model is trained on the training dataset and validated on the validation dataset.
-
-Story Generation:
-
-generate_story: Generates a story from a given prompt.
-
-API Deployment:
-
-Flask API exposes the story generation functionality.
-
+1.	Data Loading and Preprocessing:
+o	load_data: Loads the dataset.
+o	preprocess_data: Tokenizes and pads the sequences.
+2.	Model Building:
+o	build_model: Defines the Seq2Seq model with attention.
+3.	Training:
+o	The model is trained on the training dataset and validated on the validation dataset.
+4.	Story Generation:
+o	generate_story: Generates a story from a given prompt.
+5.	API Deployment:
+o	Flask API exposes the story generation functionality.
+________________________________________
 6. Results
-The model was trained for 10 epochs with a batch size of 64.
-
-Training and validation accuracy were monitored to ensure the model was learning effectively.
-
-The model was able to generate coherent and contextually relevant stories from new prompts.
-
+•	The model was trained for 10 epochs with a batch size of 64.
+•	Training and validation accuracy were monitored to ensure the model was learning effectively.
+•	The model was able to generate coherent and contextually relevant stories from new prompts.
+________________________________________
 7. Challenges
-Data Quality:
-
-The dataset required cleaning to remove inconsistencies and noise.
-
-Model Complexity:
-
-The Seq2Seq model with attention is computationally expensive and requires significant resources for training.
-
-Overfitting:
-
-Regularization techniques like dropout were considered to prevent overfitting.
-
+1.	Data Quality:
+o	The dataset required cleaning to remove inconsistencies and noise.
+2.	Model Complexity:
+o	The Seq2Seq model with attention is computationally expensive and requires significant resources for training.
+3.	Overfitting:
+o	Regularization techniques like dropout were considered to prevent overfitting.
+________________________________________
 8. Future Work
-Improve Dataset:
-
-Use a larger and more diverse dataset to improve the model's creativity and generalization.
-
-Hyperparameter Tuning:
-
-Experiment with different hyperparameters (e.g., embedding size, LSTM units) to optimize performance.
-
-Advanced Architectures:
-
-Explore transformer-based models (e.g., GPT, BERT) for better performance.
-
-Deployment:
-
-Deploy the model on a cloud platform for scalability and accessibility.
-
+1.	Improve Dataset:
+o	Use a larger and more diverse dataset to improve the model's creativity and generalization.
+2.	Hyperparameter Tuning:
+o	Experiment with different hyperparameters (e.g., embedding size, LSTM units) to optimize performance.
+3.	Advanced Architectures:
+o	Explore transformer-based models (e.g., GPT, BERT) for better performance.
+4.	Deployment:
+o	Deploy the model on a cloud platform for scalability and accessibility.
+________________________________________
 9. Conclusion
 This project demonstrates the use of a Seq2Seq model with attention for story generation. The model is capable of generating coherent and contextually relevant stories from writing prompts. The Flask API provides an easy-to-use interface for real-time story generation. While the current implementation is effective, there is significant scope for improvement in terms of dataset quality, model architecture, and deployment.
+
