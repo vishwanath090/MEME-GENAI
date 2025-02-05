@@ -81,14 +81,5 @@ python app.py
 2. Send a request to the `/generate` endpoint with a writing prompt.
 3. Receive an AI-generated narrative as a response.
 
-## Future Improvements
-- Enhance model training with larger datasets.
-- Improve coherence and story structure using advanced NLP techniques.
-- Allow user feedback to refine story outputs.
 
-## Contributing
-Contributions are welcome! Feel free to fork this repository and submit pull requests with improvements.
-
-## License
-This project is licensed under the MIT License.
 
