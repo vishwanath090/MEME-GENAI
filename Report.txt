@@ -1,18 +1,14 @@
 •	Project Report: Story Generation Using Seq2Seq Model with Attention
-________________________________________
 1. Introduction
-The goal of this project is to build a story generation system using a sequence-to-sequence (Seq2Seq) model with an attention mechanism. The system  takes a writing prompt as input and generates a coherent story as output. The project leverages deep learning techniques, specifically Long Short-Term Memory (LSTM) networks, and is implemented using TensorFlow and Keras. A Flask API is also developed to expose the model's functionality for real-time story generation.
-________________________________________
+The goal of this project is to build a story generation system using a sequence-sequence (Seq2Seq) model with an attention mechanism. The system takes a writing prompt as input and generates a coherent story as output. The project leverages deep learning techniques, specifically Long Short-Term Memory (LSTM) networks, and is implemented using TensorFlow and Keras. A Flask API is also developed to expose the model's functionality for real-time story generation.
 2. Problem Statement
 Generating creative and coherent stories from a given prompt is a challenging task in natural language processing (NLP). Traditional rule-based systems lack the flexibility and creativity required for such tasks. This project aims to address this challenge by using a deep learning-based approach to generate stories that are contextually relevant and grammatically correct.
-________________________________________
 3. Dataset
 The dataset used in this project consists of pairs of writing prompts and corresponding stories. The data is split into three sets:
 •	Training Data: Used to train the Seq2Seq model.
 •	Validation Data: Used to tune the model and prevent overfitting.
 •	Test Data: Used to evaluate the model's performance.
 The dataset is stored in text files, with each line containing a prompt or a story.
-________________________________________
 4. Methodology
 4.1 Preprocessing
 1.	Data Loading:
@@ -29,7 +25,7 @@ o	This ensures that all input sequences have the same length, which is required 
 o	For the decoder, the target sequences are shifted by one position to create the input and output pairs.
 	Input to the decoder: target_padded[:, :-1]
 	Output from the decoder: target_padded[:, 1:]
-________________________________________
+
 4.2 Model Architecture
 The Seq2Seq model with attention is implemented as follows:
 1.	Encoder:
@@ -48,7 +44,6 @@ o	A dense layer with a softmax activation function predicts the probability dist
 5.	Model Training:
 o	The model is compiled with the Adam optimizer and sparse categorical cross-entropy loss.
 o	It is trained on the padded source and target sequences for a specified number of epochs.
-________________________________________
 4.3 Postprocessing
 1.	Story Generation:
 o	The generate_story function takes a prompt as input.
@@ -60,7 +55,7 @@ o	The generated sequence of integers is converted back into text using the token
 3.	Flask API:
 o	A Flask API is created to expose the story generation functionality.
 o	The API accepts a JSON payload with a prompt and returns the generated story as a JSON response.
-________________________________________
+
 5. Implementation
 5.1 Tools and Libraries
 •	TensorFlow/Keras: For building and training the Seq2Seq model.
@@ -79,12 +74,11 @@ o	The model is trained on the training dataset and validated on the validation d
 o	generate_story: Generates a story from a given prompt.
 5.	API Deployment:
 o	Flask API exposes the story generation functionality.
-________________________________________
 6. Results
 •	The model was trained for 10 epochs with a batch size of 64.
 •	Training and validation accuracy were monitored to ensure the model was learning effectively.
 •	The model was able to generate coherent and contextually relevant stories from new prompts.
-________________________________________
+
 7. Challenges
 1.	Data Quality:
 o	The dataset required cleaning to remove inconsistencies and noise.
@@ -92,7 +86,7 @@ o	The dataset required cleaning to remove inconsistencies and noise.
 o	The Seq2Seq model with attention is computationally expensive and requires significant resources for training.
 3.	Overfitting:
 o	Regularization techniques like dropout were considered to prevent overfitting.
-________________________________________
+
 8. Future Work
 1.	Improve Dataset:
 o	Use a larger and more diverse dataset to improve the model's creativity and generalization.
@@ -102,7 +96,7 @@ o	Experiment with different hyperparameters (e.g., embedding size, LSTM units) t
 o	Explore transformer-based models (e.g., GPT, BERT) for better performance.
 4.	Deployment:
 o	Deploy the model on a cloud platform for scalability and accessibility.
-________________________________________
+
 9. Conclusion
 This project demonstrates the use of a Seq2Seq model with attention for story generation. The model is capable of generating coherent and contextually relevant stories from writing prompts. The Flask API provides an easy-to-use interface for real-time story generation. While the current implementation is effective, there is significant scope for improvement in terms of dataset quality, model architecture, and deployment.
 
