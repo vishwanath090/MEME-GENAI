@@ -1,98 +1,149 @@
-# AI-Based Story Generation Using Writing Prompts
+AI-Based Story Generation Using Writing Prompts
+Project Overview
+AI-based story generation leverages advanced artificial intelligence models, such as GPT (Generative Pre-trained Transformers), to automatically create narratives. These models are trained on extensive datasets of human-written text, enabling them to produce coherent and contextually relevant stories across various genres. This project focuses on generating creative stories based on user-provided writing prompts using a transformer-based model. The final model is deployed via a Streamlit application for an interactive user experience.
 
-## Project Overview
-AI-based story generation refers to the use of artificial intelligence models, like GPT (Generative Pre-trained Transformers) or similar systems, to create narratives automatically. These AI models are trained on vast datasets of human-written text, enabling them to generate coherent and contextually relevant stories across a variety of genres
-This project utilizes AI to generate creative stories based on user-provided writing prompts. The model is trained on a dataset of writing prompts. The final model is deployed using Flask for an interactive user experience.
+Features
+Story Generation: Generates creative and contextually relevant stories from user-provided prompts.
 
-## Features
-- Generates creative and contextually relevant stories from prompts.
-- Trained on a large dataset of writing prompts and stories.
-- User-friendly API using Flask.
-- Model saving and loading for efficient reuse.
+Training on Large Dataset: The model is trained on a comprehensive dataset of writing prompts and corresponding human-written stories.
 
-## Dataset
-dataset link: https://www.kaggle.com/datasets/ratthachat/writing-prompts
-The dataset consists of writing prompts and human-generated stories, stored in the following files:
-- `valid.wp_target`
-- `valid.wp_source`
-- `train.wp_target`
-- `train.wp_source`
-- `test.wp_target`
-- `test.wp_source`
-  
-•	Abbreviation
+User-Friendly Interface: Utilizes Streamlit for an intuitive and interactive user experience.
 
-•	wp	          -->	Writing Prompts
+Model Efficiency: Supports model saving and loading for efficient reuse and deployment.
 
-•	rr	          -->Reddit Responses
+Dataset
+The dataset used for this project is sourced from Kaggle and consists of writing prompts paired with human-generated stories. The dataset is structured into three subsets: training, validation, and test sets.
 
-•	vp	          -->Validation Prompts
+Dataset Link
+Writing Prompts Dataset on Kaggle
 
-•	tt	          -->Title-Text
+Dataset Files
+The dataset is divided into the following files:
 
+Training Set:
 
-### Dataset Description
-The dataset is structured into pairs of writing prompts and their corresponding human-written stories. It is divided into three subsets:
-- **Train Set**: Used to train the model, ensuring it learns from a diverse set of writing prompts and story responses.
-- **Validation Set**: Used to fine-tune and evaluate the model's performance during training.
-- **Test Set**: Used to assess the final model's ability to generate coherent and engaging stories.
+train.wp_source: Contains writing prompts.
 
-Each dataset file is split into:
-- `.wp_source`: Contains the writing prompts provided to human authors.
-- `.wp_target`: Contains the corresponding human-written stories.
+train.wp_target: Contains corresponding human-written stories.
 
-## Installation
-### Prerequisites
-Ensure you have Python installed. Then, install the required dependencies:
-```bash
+Validation Set:
+
+valid.wp_source: Contains writing prompts.
+
+valid.wp_target: Contains corresponding human-written stories.
+
+Test Set:
+
+test.wp_source: Contains writing prompts.
+
+test.wp_target: Contains corresponding human-written stories.
+
+Dataset Description
+Writing Prompts: Short, creative prompts provided to human authors to inspire story creation.
+
+Human-Written Stories: Stories written by humans in response to the provided prompts.
+
+Purpose: The dataset is used to train, validate, and test the AI model, ensuring it can generate coherent and engaging narratives.
+
+Installation
+Prerequisites
+Ensure you have Python 3.x installed. Then, install the required dependencies using the following command:
+
+bash
+Copy
 pip install -r requirements.txt
-```
+Dependencies
+The project relies on the following Python libraries:
 
-### Dependencies
-The project requires the following Python libraries:
-```txt
-torch
-transformers
-flask
-numpy
-pandas
-tqdm
-scikit-learn
-```
+torch: For deep learning model training and inference.
 
-## Model Training
-Train the AI model using the dataset:
-```bash
+transformers: For using pre-trained transformer models like GPT.
+
+flask: For creating the API (if needed).
+
+numpy: For numerical computations.
+
+pandas: For data manipulation and analysis.
+
+tqdm: For progress bars during training.
+
+scikit-learn: For evaluation metrics (if needed).
+
+streamlit: For the interactive web application.
+
+Model Training
+To train the AI model, run the following command:
+
+bash
+Copy
 python train.py
-```
-This script will:
-1. Load the dataset.
-2. Train the model using a transformer-based architecture.
-3. Save the trained model for future use.
+Training Process
+Data Loading: The script loads the dataset from the provided files.
 
-## Running the Flask API
-To deploy the AI story generator as an API using Flask, run:
-```bash
-python app.py
-```
+Model Training: A transformer-based architecture is used to train the model on the writing prompts and corresponding stories.
 
-## API Endpoints
-- **Generate Story**: Send a POST request to `/generate` with a JSON payload containing a `prompt`.
-  ```json
-  {
-    "prompt": "Once upon a time..."
-  }
-  ```
-- The API responds with a generated story.
+Model Saving: The trained model is saved as model.pth for future use.
 
-## Model Saving & Loading
-- The trained model is saved as `model.pth`.
-- You can load the model in `app.py` before generating stories.
+Running the Streamlit Application
+To deploy the AI story generator as an interactive Streamlit application, run:
 
-## Usage
-1. Start the Flask API.
-2. Send a request to the `/generate` endpoint with a writing prompt.
-3. Receive an AI-generated narrative as a response.
+bash
+Copy
+streamlit run app.py
+Streamlit Interface
+Input: Users can enter a writing prompt in the provided text box.
 
+Output: The AI-generated story is displayed in real-time.
 
+API Endpoints (Optional)
+If you choose to deploy the model as an API using Flask, the following endpoint is available:
+
+Generate Story: Send a POST request to /generate with a JSON payload containing a prompt.
+
+json
+Copy
+{
+  "prompt": "Once upon a time..."
+}
+Response: The API returns a JSON object containing the generated story.
+
+Model Saving & Loading
+Saving: The trained model is saved as model.pth after training.
+
+Loading: The model is loaded in app.py or the API script before generating stories.
+
+Usage
+Start the Streamlit Application: Run streamlit run app.py to launch the interactive interface.
+
+Enter a Prompt: Provide a writing prompt in the input field.
+
+Generate a Story: The AI will generate a narrative based on the provided prompt.
+
+Explore: Experiment with different prompts to see the variety of stories the AI can create.
+
+Future Enhancements
+Fine-Tuning: Fine-tune the model on specific genres or writing styles.
+
+User Feedback: Incorporate user feedback to improve story quality.
+
+Multi-Language Support: Extend the model to generate stories in multiple languages.
+
+Advanced Features: Add options for controlling story length, tone, or character development.
+
+Contributing
+Contributions to this project are welcome! Please follow these steps:
+
+Fork the repository.
+
+Create a new branch for your feature or bug fix.
+
+Submit a pull request with a detailed description of your changes.
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+Acknowledgments
+The dataset is sourced from Kaggle.
+
+Special thanks to the developers of the transformers library by Hugging Face for providing pre-trained models.
 
