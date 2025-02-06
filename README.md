@@ -1,145 +1,89 @@
-AI-Based Story Generation Using Writing Prompts
-Project Overview
-This project leverages advanced AI models, such as GPT (Generative Pre-trained Transformers), to automatically generate creative and coherent stories based on user-provided writing prompts. The model is trained on a large dataset of writing prompts and corresponding human-written stories, enabling it to produce contextually relevant narratives across various genres. The final model is deployed using Streamlit, providing an interactive and user-friendly interface for story generation.
+# AI-Based Story Generator
 
-Features
-AI-Powered Story Generation: Generates creative and engaging stories from user-provided prompts.
+## Overview
+The AI-Based Story Generator is a web application designed to generate creative short stories based on user-provided prompts. This project utilizes a fine-tuned Sequence-to-Sequence (Seq2Seq) model trained on the Writing Prompts dataset to produce engaging and contextually relevant narratives. The application provides users with an intuitive web interface to experiment with AI-generated storytelling, making it accessible to writers, hobbyists, and AI enthusiasts.
 
-Large Dataset Training: Trained on a comprehensive dataset of writing prompts and human-written stories.
+## Features
+- **AI-Powered Story Generation**: Generates unique, engaging stories from user prompts.
+- **Fine-Tuned Seq2Seq Model**: Improves story coherence, creativity, and fluency.
+- **Web-Based Interface**: Developed using Streamlit for ease of use.
+- **Customizable Creativity Settings**: Adjustable parameters such as temperature, top-k, and top-p.
+- **Story Management**: Save, copy, or share generated stories.
+- **GPU Acceleration Support**: Optional for faster inference times.
 
-Interactive Interface: Built with Streamlit for an intuitive and seamless user experience.
+## Installation
 
-Model Efficiency: Supports saving and loading the trained model for reuse and deployment.
+### Prerequisites
+- Python 3.8+
+- Pip (Python package manager)
+- Virtual environment (optional but recommended)
+- GPU (optional for faster processing)
 
-Customizable: Users can experiment with different prompts to generate unique stories.
+### Clone the Repository
+```bash
+git clone https://github.com/your-repo/ai-story-generator.git
+cd ai-story-generator
+```
 
-Dataset
-The project uses the Writing Prompts Dataset from Kaggle, which consists of writing prompts paired with human-generated stories. The dataset is divided into three subsets: training, validation, and test sets.
-
-Dataset Link
-Writing Prompts Dataset on Kaggle
-
-Dataset Structure
-Training Set:
-
-train.wp_source: Contains writing prompts.
-
-train.wp_target: Contains corresponding human-written stories.
-
-Validation Set:
-
-valid.wp_source: Contains writing prompts.
-
-valid.wp_target: Contains corresponding human-written stories.
-
-Test Set:
-
-test.wp_source: Contains writing prompts.
-
-test.wp_target: Contains corresponding human-written stories.
-
-Dataset Description
-Writing Prompts: Short, creative prompts provided to inspire story creation.
-
-Human-Written Stories: Stories written by humans in response to the prompts.
-
-Purpose: Used to train, validate, and test the AI model to ensure it generates coherent and engaging narratives.
-
-Installation
-Prerequisites
-Python 3.x
-
-Pip (Python package installer)
-
-Steps
-Clone the repository:
-
-bash
-Copy
-git clone https://github.com/your-username/ai-story-generation.git
-cd ai-story-generation
-Install the required dependencies:
-
-bash
-Copy
+### Install Dependencies
+```bash
 pip install -r requirements.txt
-Dependencies
-The project uses the following Python libraries:
+```
 
-torch: For deep learning model training and inference.
+### Dataset: Writing Prompts
+The **Writing Prompts dataset** is a large-scale dataset designed for creative writing and storytelling. It contains diverse prompts paired with user-generated responses, making it an excellent resource for training AI models in generating coherent and imaginative narratives.
 
-transformers: For using pre-trained transformer models like GPT.
+The dataset consists of the following files:
+- `train.wp.source`: Training set prompts
+- `train.wp.target`: Corresponding stories for training prompts
+- `valid.wp.source`: Validation set prompts
+- `valid.wp.target`: Corresponding stories for validation prompts
+- `test.wp.source`: Test set prompts
+- `test.wp.target`: Corresponding stories for test prompts
 
-streamlit: For building the interactive web application.
+## Model Training and Fine-Tuning
+The model is fine-tuned on the Writing Prompts dataset using **Hugging Face's Transformers library**.
 
-numpy: For numerical computations.
+### Training Steps:
+1. **Preprocess the Dataset**: Clean and tokenize the data.
+2. **Fine-Tune the Model**:
+```bash
+python train.py --model_name seq2seq --epochs 3 --batch_size 8
+```
+3. **Save the Trained Model**: The trained model is stored for later inference.
 
-pandas: For data manipulation and analysis.
-
-tqdm: For progress bars during training.
-
-scikit-learn: For evaluation metrics (if needed).
-
-Model Training
-To train the AI model, run the following command:
-
-bash
-Copy
-python train.py
-Training Process
-Data Loading: The script loads the dataset from the provided files.
-
-Model Training: A transformer-based architecture is used to train the model on the writing prompts and corresponding stories.
-
-Model Saving: The trained model is saved as model.pth for future use.
-
-Running the Streamlit Application
-To launch the interactive Streamlit application, run:
-
-bash
-Copy
+## Running the Web App
+### Start the Application
+```bash
 streamlit run app.py
-Streamlit Interface
-Input: Users can enter a writing prompt in the provided text box.
+```
 
-Output: The AI-generated story is displayed in real-time.
+### Access the Web Interface
+After running the above command, open your browser and navigate to the Streamlit-provided URL.
 
-Usage
-Start the Application: Run the Streamlit app using the command above.
+## Usage
+- **Enter a Writing Prompt**: Provide a creative idea or sentence.
+- **Click "Generate"**: The AI creates a unique story.
+- **Adjust Creativity Parameters**: Modify temperature and top-k settings for varied outputs.
+- **Save, Copy, or Share**: Manage generated stories easily.
 
-Enter a Prompt: Provide a writing prompt in the input field.
+## Technologies Used
+- **Backend**: Python, TensorFlow/PyTorch, Hugging Face Transformers
+- **Frontend**: Streamlit, HTML, CSS, JavaScript
+- **Model Architecture**: Seq2Seq for text generation
+- **Deployment**: Local execution (future cloud-based options)
 
-Generate a Story: The AI will generate a narrative based on the provided prompt.
+## Future Improvements
+- Enhance model performance with **larger datasets** and **fine-tuning techniques**.
+- Implement **user feedback-based reinforcement learning** for iterative improvement.
+- Support **multiple story genres** for personalized storytelling experiences.
+- Develop a **mobile-friendly UI** for accessibility on all devices.
+- Deploy as a **cloud-based service** for wider usability.
 
-Explore: Experiment with different prompts to see the variety of stories the AI can create.
+## License
+This project is open-source and available under the **MIT License**.
 
-Model Saving & Loading
-Saving: The trained model is saved as model.pth after training.
+## Contributors
+- **Your Name** ([Your Email])
+- Additional contributors welcome!
 
-Loading: The model is loaded in app.py before generating stories.
-
-Future Enhancements
-Fine-Tuning: Fine-tune the model on specific genres or writing styles.
-
-User Feedback: Incorporate user feedback to improve story quality.
-
-Multi-Language Support: Extend the model to generate stories in multiple languages.
-
-Advanced Features: Add options for controlling story length, tone, or character development.
-
-Contributing
-Contributions to this project are welcome! Please follow these steps:
-
-Fork the repository.
-
-Create a new branch for your feature or bug fix.
-
-Submit a pull request with a detailed description of your changes.
-
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Acknowledgments
-The dataset is sourced from Kaggle.
-
-Special thanks to the developers of the transformers library by Hugging Face for providing pre-trained models.
