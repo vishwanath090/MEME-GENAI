@@ -21,8 +21,8 @@ The AI-Based Story Generator is a web application designed to generate creative 
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/your-repo/ai-story-generator.git
-cd ai-story-generator
+git clone https://github.com/vishwanath090/Storygeneration
+cd storygenerator
 ```
 
 ### Install Dependencies
@@ -83,7 +83,5 @@ After running the above command, open your browser and navigate to the Streamlit
 ## License
 This project is open-source and available under the **MIT License**.
 
-## Contributors
-- **Your Name** ([Your Email])
-- Additional contributors welcome!
+
 
