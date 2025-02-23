@@ -94,7 +94,7 @@ user_text = st.text_input("Enter a meme idea:")
 if st.button("Generate Meme"):
     if user_text:
         meme_image, generated_caption = generate_meme(user_text)
-        st.image(meme_image, caption=generated_caption, use_column_width=True)
+        st.image(image_path, caption="Generated Meme", use_container_width=True)
 
         # Save the generated meme
         meme_image.save("generated_meme.jpg")
