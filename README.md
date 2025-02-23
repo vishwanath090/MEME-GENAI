@@ -1,87 +1,122 @@
-# AI-Based Story Generator
+AI-Based Meme Generator
+This project is an AI-powered meme generator that uses the Meme900k dataset to create memes based on user input. The application leverages a deep learning model to generate captions and overlays them on randomly selected meme templates. The project is built using TensorFlow, Keras, and Streamlit for the web interface.
 
-## Overview
-The AI-Based Story Generator is a web application designed to generate creative short stories based on user-provided prompts. This project utilizes a fine-tuned Sequence-to-Sequence (Seq2Seq) model trained on the Writing Prompts dataset to produce engaging and contextually relevant narratives. The application provides users with an intuitive web interface to experiment with AI-generated storytelling, making it accessible to writers, hobbyists, and AI enthusiasts.
+Table of Contents
+Introduction
 
-## Features
-- **AI-Powered Story Generation**: Generates unique, engaging stories from user prompts.
-- **Fine-Tuned Seq2Seq Model**: Improves story coherence, creativity, and fluency.
-- **Web-Based Interface**: Developed using Streamlit for ease of use.
-- **Customizable Creativity Settings**: Adjustable parameters such as temperature, top-k, and top-p.
-- **Story Management**: Save, copy, or share generated stories.
-- **GPU Acceleration Support**: Optional for faster inference times.
+Features
 
-## Installation
+Dataset
 
-### Prerequisites
-- Python 3.8+
-- Pip (Python package manager)
-- Virtual environment (optional but recommended)
-- GPU (optional for faster processing)
+Installation
 
-### Clone the Repository
-```bash
-git clone https://github.com/vishwanath090/Storygeneration
-cd storygenerator
-```
+Usage
 
-### Install Dependencies
-```bash
-pip install -r requirements.txt
-```
+Code Structure
 
-### Dataset: Writing Prompts
-The **Writing Prompts dataset** is a large-scale dataset designed for creative writing and storytelling. It contains diverse prompts paired with user-generated responses, making it an excellent resource for training AI models in generating coherent and imaginative narratives.
+Contributing
 
-The dataset consists of the following files:
-- `train.wp.source`: Training set prompts
-- `train.wp.target`: Corresponding stories for training prompts
-- `valid.wp.source`: Validation set prompts
-- `valid.wp.target`: Corresponding stories for validation prompts
-- `test.wp.source`: Test set prompts
-- `test.wp.target`: Corresponding stories for test prompts
+License
 
-## Model Training and Fine-Tuning
-The model is fine-tuned on the Writing Prompts dataset using **Hugging Face's Transformers library**.
+Introduction
+The AI-Based Meme Generator is a fun and interactive application that allows users to generate memes by providing a text input. The application uses a pre-trained deep learning model to predict a caption based on the user's input and overlays it on a randomly selected meme template from the Meme900k dataset.
 
-### Training Steps:
-1. **Preprocess the Dataset**: Clean and tokenize the data.
-2. **Fine-Tune the Model**:
-```bash
-python train.py --model_name seq2seq --epochs 3 --batch_size 8
-```
-3. **Save the Trained Model**: The trained model is stored for later inference.
+Features
+AI-Generated Captions: The model generates captions based on user input using a deep learning model trained on the Meme900k dataset.
 
-## Running the Web App
-### Start the Application
-```bash
-streamlit run app.py
-```
+Random Meme Templates: The application randomly selects a meme template from the dataset to overlay the generated caption.
 
-### Access the Web Interface
-After running the above command, open your browser and navigate to the Streamlit-provided URL.
+Streamlit Web Interface: The application is built using Streamlit, providing an easy-to-use web interface for generating and saving memes.
 
-## Usage
-- **Enter a Writing Prompt**: Provide a creative idea or sentence.
-- **Click "Generate"**: The AI creates a unique story.
-- **Adjust Creativity Parameters**: Modify temperature and top-k settings for varied outputs.
-- **Save, Copy, or Share**: Manage generated stories easily.
+Custom Font Styling: The meme text is styled with a bold, capitalized, and outlined effect using the "Impact" font.
 
-## Technologies Used
-- **Backend**: Python, TensorFlow/PyTorch, Hugging Face Transformers
-- **Frontend**: Streamlit, HTML, CSS, JavaScript
-- **Model Architecture**: Seq2Seq for text generation
-- **Deployment**: Local execution (future cloud-based options)
+Dataset
+The project uses the Meme900k dataset, which includes the following files:
 
-## Future Improvements
-- Enhance model performance with **larger datasets** and **fine-tuning techniques**.
-- Implement **user feedback-based reinforcement learning** for iterative improvement.
-- Support **multiple story genres** for personalized storytelling experiences.
-- Develop a **mobile-friendly UI** for accessibility on all devices.
-- Deploy as a **cloud-based service** for wider usability.
+captions.txt: Contains captions for the meme images.
 
-## License
-This project is open-source and available under the **MIT License**.
+captions_test.txt: Test set captions.
 
+captions_val.txt: Validation set captions.
 
+captions_train.txt: Training set captions.
 
+templates.txt: Contains meme templates.
+
+images/: Folder containing meme images.
+
+The dataset is used to train the deep learning model and to provide meme templates for the application.
+
+Installation
+To run this project locally, follow these steps:
+
+Clone the repository:
+
+bash
+Copy
+git clone https://github.com/your-username/ai-meme-generator.git
+cd ai-meme-generator
+Install the required dependencies:
+
+bash
+Copy
+pip install tensorflow keras pandas numpy pillow streamlit
+Download the Meme900k dataset:
+
+Ensure you have the following files in the memes900k folder:
+
+captions.txt
+
+captions_test.txt
+
+captions_val.txt
+
+captions_train.txt
+
+templates.txt
+
+images/ folder containing meme images.
+
+Run the Streamlit app:
+
+bash
+Copy
+streamlit run dep.py
+Usage
+Enter a Meme Idea: On the Streamlit web interface, enter a text input in the provided text box.
+
+Generate Meme: Click the "Generate Meme" button to create a meme with an AI-generated caption.
+
+View and Save: The generated meme will be displayed on the screen, and you can save it as generated_meme.jpg.
+
+Code Structure
+app.ipynb: Jupyter notebook containing the code for training the deep learning model using the Meme900k dataset.
+
+dep.py: Python script for the Streamlit web application that generates memes using the trained model.
+
+meme_generator.h5: Pre-trained model file used by the Streamlit app to generate captions.
+
+Key Functions in dep.py:
+load_meme_model(): Loads the pre-trained model.
+
+generate_meme(user_input): Generates a meme based on the user's input.
+
+wrap_text(): Wraps text to fit within the meme image.
+
+draw_stylized_text(): Draws stylized text on the meme image.
+
+Contributing
+Contributions are welcome! If you'd like to contribute, please follow these steps:
+
+Fork the repository.
+
+Create a new branch (git checkout -b feature/YourFeatureName).
+
+Commit your changes (git commit -m 'Add some feature').
+
+Push to the branch (git push origin feature/YourFeatureName).
+
+Open a pull request.
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
