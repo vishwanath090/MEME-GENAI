@@ -98,10 +98,5 @@ Want to improve the meme generator? Follow these steps:
    ```
 5. Submit a Pull Request  
 
-## License  
-This project is licensed under the MIT License.  
 
-For any issues, feel free to open an issue or contact me vishwanath.22cse@cambridge.edu.in.  
-
-**Enjoy Generating AI-Powered Memes!**
 
