@@ -2,7 +2,7 @@ AI-Based Meme Generator
 This project is an AI-powered meme generator that uses the Meme900k dataset to create memes based on user input. The application leverages a deep learning model to generate captions and overlays them on randomly selected meme templates. The project is built using TensorFlow, Keras, and Streamlit for the web interface.
 
 Table of Contents
-Introduction
+Introduction 
 
 Features
 
