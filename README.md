@@ -101,7 +101,7 @@ Want to improve the meme generator? Follow these steps:
 ## License  
 This project is licensed under the MIT License.  
 
-For any issues, feel free to open an issue or contact me.  
+For any issues, feel free to open an issue or contact me vishwanath.22cse@cambridge.edu.in.  
 
 **Enjoy Generating AI-Powered Memes!**
 
