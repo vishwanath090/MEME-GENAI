@@ -1,123 +1,107 @@
-AI-Based Meme Generator
-This project is an AI-powered meme generator that uses the Meme900k dataset to create memes based on user input. The application leverages a deep learning model to generate captions and overlays them on randomly selected meme templates. The project is built using TensorFlow, Keras, and Streamlit for the web interface.
+# AI-Powered Meme Generator
 
-Table of Contents
-Introduction 
+An AI-powered meme generator using deep learning and NLP to create memes with captions. Built with TensorFlow, Streamlit, and the Memes900k dataset.
 
-Features
+## Features
+- AI-generated meme captions using NLP and deep learning  
+- Randomly selects a meme template from the dataset  
+- Uses Impact font for meme styling  
+- Streamlit-based UI for easy interaction  
+- Meme generation and image overlay with PIL  
+- Saves generated memes locally  
 
-Dataset
+## Dataset Structure (Memes900k)
+This project utilizes the Memes900k dataset, which consists of the following files:
 
-Installation
+```
+memes900k/
+├── images/                # Folder containing meme template images
+├── captions.txt           # All available captions
+├── captions_train.txt     # Training dataset
+├── captions_val.txt       # Validation dataset
+├── captions_test.txt      # Test dataset
+├── templates.txt          # Meme template references
+```
+Ensure you download and place the dataset in the correct directory before running the project.
 
-Usage
+## Installation
 
-Code Structure
-
-Contributing
-
-License
-
-Introduction
-The AI-Based Meme Generator is a fun and interactive application that allows users to generate memes by providing a text input. The application uses a pre-trained deep learning model to predict a caption based on the user's input and overlays it on a randomly selected meme template from the Meme900k dataset.
-
-Features
-AI-Generated Captions: The model generates captions based on user input using a deep learning model trained on the Meme900k dataset.
-
-Random Meme Templates: The application randomly selects a meme template from the dataset to overlay the generated caption.
-
-Streamlit Web Interface: The application is built using Streamlit, providing an easy-to-use web interface for generating and saving memes.
-
-Custom Font Styling: The meme text is styled with a bold, capitalized, and outlined effect using the "Impact" font.
-
-Dataset
-The project uses the Meme900k dataset, which includes the following files:
-
-captions.txt: Contains captions for the meme images.
-
-captions_test.txt: Test set captions.
-
-captions_val.txt: Validation set captions.
-
-captions_train.txt: Training set captions.
-
-templates.txt: Contains meme templates.
-
-images/: Folder containing meme images.
-
-The dataset is used to train the deep learning model and to provide meme templates for the application.
-
-Installation
-To run this project locally, follow these steps:
-
-Clone the repository:
-
-bash
-Copy
-git clone https://github.com/your-username/ai-meme-generator.git
+### 1. Clone the Repository  
+```sh
+git clone https://github.com/yourusername/ai-meme-generator.git
 cd ai-meme-generator
-Install the required dependencies:
+```
 
-bash
-Copy
-pip install tensorflow keras pandas numpy pillow streamlit
-Download the Meme900k dataset:
+### 2. Install Dependencies  
+```sh
+pip install -r requirements.txt
+```
 
-Ensure you have the following files in the memes900k folder:
+### 3. Download Dataset  
+Place the Memes900k dataset in the correct directory as mentioned above.
 
-captions.txt
+### 4. Run the Meme Generator  
+```sh
+streamlit run app.py
+```
 
-captions_test.txt
+## Project Files  
 
-captions_val.txt
+| File                 | Description                           |
+|----------------------|--------------------------------------|
+| `app.ipynb`         | Jupyter notebook for model training  |
+| `dep.py`            | Core script for meme generation      |
+| `meme_generator.h5` | Pre-trained deep learning model      |
+| `requirements.txt`  | Dependencies for the project        |
+| `impact.ttf`        | Font used for meme generation       |
+| `generated_meme.jpg`| Output meme file                    |
 
-captions_train.txt
+## How It Works  
 
-templates.txt
+1. The user inputs a meme idea into the Streamlit UI.  
+2. The model processes the text and predicts a funny caption.  
+3. A random meme template is selected from the dataset.  
+4. The caption is overlaid on the image using PIL (Pillow).  
+5. The final meme is displayed and saved as `generated_meme.jpg`.  
 
-images/ folder containing meme images.
+## Dependencies  
 
-Run the Streamlit app:
+Ensure you have the following libraries installed:
+- tensorflow
+- numpy
+- streamlit
+- pillow
+- random
+- os
 
-bash
-Copy
-streamlit run dep.py
-Usage
-Enter a Meme Idea: On the Streamlit web interface, enter a text input in the provided text box.
+Install them via:  
+```sh
+pip install tensorflow numpy streamlit pillow
+```
 
-Generate Meme: Click the "Generate Meme" button to create a meme with an AI-generated caption.
+## Contributing  
 
-View and Save: The generated meme will be displayed on the screen, and you can save it as generated_meme.jpg.
+Want to improve the meme generator? Follow these steps:
 
-Code Structure
-app.ipynb: Jupyter notebook containing the code for training the deep learning model using the Meme900k dataset.
+1. Fork the repo  
+2. Create a new branch:  
+   ```sh
+   git checkout -b feature-xyz
+   ```
+3. Commit your changes:  
+   ```sh
+   git commit -m "Add new feature"
+   ```
+4. Push to the branch:  
+   ```sh
+   git push origin feature-xyz
+   ```
+5. Submit a Pull Request  
 
-dep.py: Python script for the Streamlit web application that generates memes using the trained model.
+## License  
+This project is licensed under the MIT License.  
 
-meme_generator.h5: Pre-trained model file used by the Streamlit app to generate captions.
+For any issues, feel free to open an issue or contact me.  
 
-Key Functions in dep.py:
-load_meme_model(): Loads the pre-trained model.
-
-generate_meme(user_input): Generates a meme based on the user's input.
-
-wrap_text(): Wraps text to fit within the meme image.
-
-draw_stylized_text(): Draws stylized text on the meme image.
-
-Contributing
-Contributions are welcome! If you'd like to contribute, please follow these steps:
-
-Fork the repository.
-
-Create a new branch (git checkout -b feature/YourFeatureName).
-
-Commit your changes (git commit -m 'Add some feature').
-
-Push to the branch (git push origin feature/YourFeatureName).
-
-Open a pull request.
-
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
+**Enjoy Generating AI-Powered Memes!**
 
