@@ -33,7 +33,7 @@ def wrap_text(draw, text, font, max_width):
 
     for word in words:
         test_line = f"{current_line} {word}".strip()
-        width, _ = draw.textsize(test_line, font=font)
+        width, _ = draw.textbbox((0, 0), test_line, font=font)[2:]  # Get text width
 
         if width <= max_width:
             current_line = test_line
@@ -44,8 +44,22 @@ def wrap_text(draw, text, font, max_width):
     lines.append(current_line)
     return lines
 
+def draw_stylized_text(draw, text, position, font, image_width):
+    """Draws meme text with a bold, capitalized, and outlined effect."""
+    text = text.upper()  # MEME text is usually in uppercase
+    x, y = position
+
+    # Black stroke effect
+    outline_range = [-2, 0, 2]
+    for dx in outline_range:
+        for dy in outline_range:
+            draw.text((x + dx, y + dy), text, font=font, fill="black")
+
+    # White text
+    draw.text((x, y), text, font=font, fill="white")
+
 def generate_meme(user_input):
-    """Generate a meme with an AI-generated caption and display it."""
+    """Generate a meme with an AI-generated caption and overlay text on the image."""
     # Convert input to sequence
     sequence = tokenizer.texts_to_sequences([user_input])
     padded = pad_sequences(sequence, maxlen=20, padding="post")
@@ -53,13 +67,17 @@ def generate_meme(user_input):
     # Predict caption
     prediction = model.predict(padded)
     predicted_index = np.argmax(prediction)
-    caption = tokenizer.index_word.get(predicted_index, "No caption generated")
+    caption = tokenizer.index_word.get(predicted_index, "No caption generated").upper()  # Capitalize for meme effect
 
     # Select a random meme template
     image_files = os.listdir(images_folder)
     selected_image = random.choice(image_files)
     image_path = os.path.join(images_folder, selected_image)
     image = Image.open(image_path)
+
+    # Resize image if needed
+    max_size = (600, 600)
+    image.thumbnail(max_size, Image.Resampling.LANCZOS)
 
     # Prepare text overlay
     draw = ImageDraw.Draw(image)
@@ -70,20 +88,30 @@ def generate_meme(user_input):
     except IOError:
         font = ImageFont.load_default()  # Fallback if Impact font is missing
 
-    # Wrap text for better readability
-    max_width = image.width - 40  # Keep padding from edges
+    # Wrap text for readability
+    max_width = image.width - 40  # Padding from edges
     wrapped_text = wrap_text(draw, caption, font, max_width)
 
     # Calculate text height
-    total_text_height = sum(draw.textsize(line, font=font)[1] for line in wrapped_text)
-    text_y = image.height - total_text_height - 20  # Position at bottom
+    total_text_height = sum(draw.textbbox((0, 0), line, font=font)[3] for line in wrapped_text)
 
-    # Draw text on meme
+    # Position the text at top and bottom like a classic meme
+    top_y = 10  # Position at the top
+    bottom_y = image.height - total_text_height - 10  # Position at the bottom
+
+    # Draw top text
     for line in wrapped_text:
-        text_width, text_height = draw.textsize(line, font=font)
-        text_x = (image.width - text_width) // 2  # Center text
-        draw.text((text_x, text_y), line, fill="white", font=font, stroke_width=2, stroke_fill="black")
-        text_y += text_height  # Move to the next line
+        text_width = draw.textbbox((0, 0), line, font=font)[2]
+        x_position = (image.width - text_width) // 2  # Center text
+        draw_stylized_text(draw, line, (x_position, top_y), font, image.width)
+        top_y += font.size  # Move to next line
+
+    # Draw bottom text
+    for line in wrapped_text:
+        text_width = draw.textbbox((0, 0), line, font=font)[2]
+        x_position = (image.width - text_width) // 2  # Center text
+        draw_stylized_text(draw, line, (x_position, bottom_y), font, image.width)
+        bottom_y += font.size  # Move to next line
 
     return image, caption
 
@@ -94,7 +122,9 @@ user_text = st.text_input("Enter a meme idea:")
 if st.button("Generate Meme"):
     if user_text:
         meme_image, generated_caption = generate_meme(user_text)
-        st.image(meme_image, caption=generated_caption, use_column_width=True)
+        
+        # Display image in Streamlit
+        st.image(meme_image, caption=generated_caption, use_container_width=True)
 
         # Save the generated meme
         meme_image.save("generated_meme.jpg")
