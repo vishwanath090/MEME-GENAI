@@ -10,7 +10,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 # Define dataset paths
 images_folder = r"C:\Users\91807\OneDrive\Desktop\MEME\memes900k\images"
 captions_path = r"C:\Users\91807\OneDrive\Desktop\MEME\memes900k\captions.txt"
-font_path = "impact.ttf"  # Ensure you have "impact.ttf" in your project directory
+font_path = "impact.ttf"  #  Ensure you have "impact.ttf" in your project directory
 
 # Cache model loading for efficiency
 @st.cache_resource
